@@ -13,6 +13,25 @@ body {
   color: #333;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: white;
+  gap: 10px;
+}
+
+.logo img {
+  height: 30px;
+  width: auto;
+  display: block;
+
+}
+
+.logo_text {
+  font-size: 20px ;
+}
+
 /* Header y navegación */
 header {
   background-color: #4CAF50;
@@ -22,6 +41,14 @@ header {
   top: 0;
   z-index: 1000;
 }
+
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #2e7d32; /* verde más oscuro para destacar */
+  font-weight: bold;
+}
+
 
 .navbar {
   display: flex;
@@ -41,7 +68,6 @@ header {
 .navbar a {
   color: white;
   text-decoration: none;
-  font-weight: bold;
 }
 
 .navbar a:hover {
@@ -93,6 +119,70 @@ main {
   border-radius: 8px;
 }
 
+.footer {
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Contact section container */
+.contact-content .container {
+  flex: 1;
+  display: flex;
+  justify-content: center;     /* Centrado horizontal */
+  align-items: center;         /* Centrado vertical */
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 20px;
+}
+
+
+/* Form and text widths */
+#contact .text,
+#contact .form {
+  flex: 1;
+  min-width: 280px;
+  padding: 20px;
+}
+
+#contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#contact form input,
+#contact form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Footer inside contact */
+#contact .footer {
+  margin-top: 40px;
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+}
+
+.floating-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
 /* Carrusel en Hero */
 .hero-carousel {
   position: relative;
@@ -244,9 +334,62 @@ main {
   background-color: #45a049;
 }
 
+/* Contact section - layout vertical con footer abajo */
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-section .contact-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form-message {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-40px); /* empieza más arriba */
+  background-color: #4CAF50;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-size: 1rem;
+  z-index: 2000;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+/* visible */
+.form-message.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+/* oculto, pero NO display: none */
+.form-message.hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-40px);
+}
+
 /* Media Queries para dispositivos móviles */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
   }
 }
+
+@media (max-width: 768px) {
+  .section h2 {
+    font-size: 1.6rem;
+  }
+}
+

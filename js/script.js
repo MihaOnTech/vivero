@@ -48,4 +48,23 @@ document.addEventListener('DOMContentLoaded', () => {
       showSlide(slideIndex);
     });
   });
+
+  // Mensaje visual tras enviar el formulario
+  const contactForm = document.getElementById('contact-form');
+  const formMessage = document.getElementById('form-message');
+
+  if (contactForm && formMessage) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      formMessage.classList.remove('hidden');
+      formMessage.classList.add('show');
+
+      this.reset();
+
+      setTimeout(() => {
+        formMessage.classList.remove('show');
+        formMessage.classList.add('hidden');
+      }, 4000);
+    });
+  }
 });
