@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
 
       // Enviar el formulario con EmailJS
-      emailjs.sendForm('service_x9i3itm', 'template_vvjftd8', this)
+      emailjs.sendForm('service_x9i3itm', 'template_ofp1fmq', this)
         .then(function () {
           console.log("✅ Email enviado correctamente");
           formMessage.textContent = "✅ Message sent successfully!";
