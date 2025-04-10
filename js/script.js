@@ -10,11 +10,20 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Función para hacer scroll a una sección determinada
-  window.scrollToSection = function(id) {
+  window.scrollToSection = function (id) {
     const target = document.getElementById(id);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinksList = document.querySelector('.navbar ul');
+
+  if (menuToggle && navLinksList) {
+    menuToggle.addEventListener('click', () => {
+      navLinksList.classList.toggle('active');
+    });
   }
 
   // Funcionalidad del carrusel
@@ -56,15 +65,33 @@ document.addEventListener('DOMContentLoaded', () => {
   if (contactForm && formMessage) {
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      formMessage.classList.remove('hidden');
-      formMessage.classList.add('show');
 
-      this.reset();
+      // Enviar el formulario con EmailJS
+      emailjs.sendForm('service_x9i3itm', 'template_vvjftd8', this)
+        .then(function () {
+          console.log("✅ Email enviado correctamente");
+          formMessage.textContent = "✅ Message sent successfully!";
+          formMessage.classList.remove('hidden');
+          formMessage.classList.add('show');
+          contactForm.reset();
 
-      setTimeout(() => {
-        formMessage.classList.remove('show');
-        formMessage.classList.add('hidden');
-      }, 4000);
+          setTimeout(() => {
+            formMessage.classList.remove('show');
+            formMessage.classList.add('hidden');
+          }, 4000);
+        }, function (error) {
+          formMessage.textContent = "❌ Error sending message. Please try again.";
+          formMessage.classList.remove('hidden');
+          formMessage.classList.add('show');
+
+          console.error("EmailJS error:", error);
+
+          setTimeout(() => {
+            formMessage.classList.remove('show');
+            formMessage.classList.add('hidden');
+          }, 4000);
+        });
     });
   }
+
 });
